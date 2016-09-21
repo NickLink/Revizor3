@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:id="@+id/revizor_type"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="3dp"/>
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:id="@+id/places_image"
+        android:layout_toRightOf="@+id/revizor_type"
+        android:layout_centerVertical="true"
+        android:layout_margin="3dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:background="@drawable/menu_arrow"
+        android:layout_gravity="center_vertical"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/places_image"
+        android:layout_toLeftOf="@+id/imageView"
+        android:layout_centerVertical="true"
+        android:padding="3dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/place_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/place_address" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/place_rating"
+            android:background="@drawable/rating_fingers_0"/>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

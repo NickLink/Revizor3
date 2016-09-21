@@ -1,0 +1,50 @@
+{
+  "project_info": {
+    "project_number": "27894140480",
+    "firebase_url": "https://revizor-142910.firebaseio.com",
+    "project_id": "revizor-142910",
+    "storage_bucket": "revizor-142910.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27894140480:android:94014f8af15a14c4",
+        "android_client_info": {
+          "package_name": "tv.novy.revizor2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27894140480-1ijj99anjh32ib1234rhjhctmj3d751o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.novy.revizor2",
+            "certificate_hash": "25E5B0151CF0ACE0FDC0D27A3D37FA1F2C7516F2"
+          }
+        },
+        {
+          "client_id": "27894140480-ob9cjiehovlccg167n25h4vm1qfdad2s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHBV-hetcsCgTWqfxmi5Qw-52TuEvTkjM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

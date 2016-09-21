@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/top_item_back"
+        layout="@layout/top_item"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:background="@drawable/places_edit_background"
+        android:layout_margin="10dp">
+
+        <Button
+            android:id="@+id/places_edit_search"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/lens_search"
+            android:layout_centerVertical="true" />
+
+        <EditText
+            android:id="@+id/places_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:id="@+id/places_edit_clear"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/close_button"
+            android:layout_centerVertical="true"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/show_places_arround"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/places_arround"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_with_shadow_selector"
+        android:textColor="@color/white"/>
+
+    <LinearLayout
+        android:id="@+id/places_rest_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:background="@drawable/layout_with_shadow_selector">
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/restaraunt"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="@string/places_restourant"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/menu_arrow"
+            android:layout_centerVertical="true"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/places_hotels_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:background="@drawable/layout_with_shadow_selector">
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/hotels"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="@string/places_hotels"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/menu_arrow"
+            android:layout_centerVertical="true"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/places_tape_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:background="@drawable/layout_with_shadow_selector">
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/tape"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="@string/places_ribbon"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/menu_arrow"
+            android:layout_centerVertical="true"/>
+
+    </LinearLayout>
+
+</LinearLayout>
