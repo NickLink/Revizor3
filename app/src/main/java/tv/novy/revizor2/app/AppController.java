@@ -16,6 +16,7 @@ import com.vk.sdk.VKSdk;
 
 import io.fabric.sdk.android.Fabric;
 import tv.novy.revizor2.R;
+import tv.novy.revizor2.data.UserProfile;
 import tv.novy.revizor2.utils.LruBitmapCache;
 
 /**
@@ -23,7 +24,7 @@ import tv.novy.revizor2.utils.LruBitmapCache;
  */
 public class AppController extends Application {
 
-
+    public static UserProfile userProfile;
 
     public static final String TAG = AppController.class
             .getSimpleName();
@@ -49,6 +50,8 @@ public class AppController extends Application {
         Fabric.with(this, new Twitter(authConfig));
 
         VKSdk.initialize(this);
+
+        userProfile = new UserProfile();
     }
 
     public static synchronized AppController getInstance() {

@@ -21,4 +21,11 @@ public class HelperClasses {
             return "xx";
         }
     }
+
+    public static boolean notNull_orEmpty(String in){
+        if(in!=null && !in.trim().isEmpty() && !in.equals("null"))
+            return true;
+        else
+            return false;
+    }
 }

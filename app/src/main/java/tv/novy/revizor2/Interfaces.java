@@ -12,5 +12,5 @@ public interface Interfaces {
     void BackToPlacesP1();
     void Places_selectes(int i);
 
-    void SocialToken(int net, String token);
+    void SocialToken(int net, String token, String uid);
 }

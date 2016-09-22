@@ -1,6 +1,7 @@
 package tv.novy.revizor2;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -23,11 +24,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONObject;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import tv.novy.revizor2.adapters.SliderMenuAdapter;
+import tv.novy.revizor2.app.AppController;
 import tv.novy.revizor2.fragments.Feed_Fragment_P1;
 import tv.novy.revizor2.fragments.Invitation_Fragment_P1;
 import tv.novy.revizor2.fragments.Invitation_Fragment_P2;
@@ -35,8 +45,10 @@ import tv.novy.revizor2.fragments.Invitation_Fragment_P3;
 import tv.novy.revizor2.fragments.Map_Fragment_P1;
 import tv.novy.revizor2.fragments.Places_Fragment_P1;
 import tv.novy.revizor2.fragments.Places_Fragment_P2;
+import tv.novy.revizor2.fragments.Profile_Loged_Fragment;
 import tv.novy.revizor2.fragments.Profile_Login_Fragment;
 import tv.novy.revizor2.fragments.Terms_Fragment_P1;
+import tv.novy.revizor2.utils.HelperClasses;
 
 
 public class MainActivity extends AppCompatActivity implements Interfaces{
@@ -56,12 +68,23 @@ public class MainActivity extends AppCompatActivity implements Interfaces{
     FrameLayout fragment_place;
     private static String TAG = "MainActivity";
 
+    SharedPreferences preferences;
+    private String preferences_key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //==============Look for a saved key===============
+        preferences = getPreferences(MODE_PRIVATE);
+        preferences_key = preferences.getString("saved_key", "");
+        if(HelperClasses.notNull_orEmpty(preferences_key)){
+            //=================Run background login==================
+
+
+
+        }
 
 
         menu_items = new ArrayList<String>();
@@ -261,9 +284,52 @@ public class MainActivity extends AppCompatActivity implements Interfaces{
     }
 
     @Override
-    public void SocialToken(int net, String token) {
-        Toast.makeText(this, "Social net=" + net + " Token=" + token, Toast.LENGTH_LONG).show();
+    public void SocialToken(int net, String token, String uid) {
+        Toast.makeText(this, "Social net=" + net + " Token=" + token + " user_ID=" + uid
+                , Toast.LENGTH_LONG).show();
+        String full_patch = GlobalConstants.API_PATH + "verify?token=" + token
+                + "&UID=" + uid + "&network=" + String.valueOf(net);
+        Log.v(TAG, "full_patch =" + full_patch);
+
+        StringRequest user_key = new StringRequest(Request.Method.GET, full_patch
+                , new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.v(TAG, "response =" + response);
+                try{
+                    JSONObject data = new JSONObject(response);
+                    JSONObject meta = data.getJSONObject("meta");
+                    String key = meta.getString("key");
+                    LoggedSuccess(key);
+                    Log.v(TAG, "PROFILE KEY=" + key);
+                }
+                catch (Exception e){
+                    Log.v(TAG, "PROFILE KEY = NONE");
+                }
+
+            }
+        },
+                new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(GlobalConstants.TAG, "Error: " + error.getMessage());
+                // hide the progress dialog
+            }
+
+        });
+        AppController.getInstance().addToRequestQueue(user_key, GlobalConstants.tag_json_obj);
+
+
         OpenClose();
+    }
+
+    void LoggedSuccess(String key){
+        preferences.edit().putString(GlobalConstants.saved_key, key).apply();
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_place,
+                        Profile_Loged_Fragment.newInstance(key), "Tag_Loged").commit();
+
     }
 
     void TransactionAction(Fragment fragment_in, Fragment fragment_out,

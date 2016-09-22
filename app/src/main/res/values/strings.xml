@@ -3,8 +3,8 @@
     <integer name="com_vk_sdk_AppId">5628786</integer>
     <string name="vk_secret">EGCwrEfpvx9spE8UqMhl</string>
     <string name="facebook_app_id">608530889329957</string>
-    <string name="twitter_key">XOjCv9EOYR3hVrxdB7XIOiwtI</string>
-    <string name="twitter_secret_key">T3BpViY7VZsGXfTRRVNnBGSAMY1lg6NStFrrSB0Cf6ybCor2k1</string>
+    <string name="twitter_key">tLC6tYpUnOBLXzKkJ7TOYZjYq</string>
+    <string name="twitter_secret_key">T4PHDWa1Z4Un8sJdVNnhsStYOOLvYsLGHzPMje8I4s6x0agn26</string>
     <string name="twitter_access_token">772785250644680705-XNgUtT4HaohfPWYDSq4GR4BEeO3C5As</string>
     <string name="twitter_access_token_secret">fGbrEaJhbwVnvjQ25EJ3jLe9lIw9kysXX1BEuP2hbtZlq</string>
 

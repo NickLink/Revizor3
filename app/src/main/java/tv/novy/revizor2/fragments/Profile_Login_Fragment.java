@@ -13,9 +13,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphRequestAsyncTask;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.twitter.sdk.android.Twitter;
@@ -31,6 +35,9 @@ import com.vk.sdk.VKScope;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
 
+import org.json.JSONObject;
+
+import tv.novy.revizor2.GlobalConstants;
 import tv.novy.revizor2.Interfaces;
 import tv.novy.revizor2.R;
 import tv.novy.revizor2.ui.FontCache;
@@ -48,6 +55,8 @@ public class Profile_Login_Fragment extends Fragment {
     LoginButton fb_loginButton;
     CallbackManager callbackManager;
     TwitterLoginButton tw_loginButton;
+
+    private String TAG = "ProgileLOGIN";
 
     private VKAccessToken access_token;
     private String[] scope = new String[]{
@@ -96,13 +105,7 @@ public class Profile_Login_Fragment extends Fragment {
             }
         });
 
-
-
-
-
-
         //========FACEBOOK SETUP=========
-        //FacebookSdk.sdkInitialize(getActivity());
         callbackManager = CallbackManager.Factory.create();
         fb_loginButton = (LoginButton) rootView.findViewById(R.id.fb_login_button);
         fb_loginButton.setReadPermissions("email");
@@ -111,10 +114,25 @@ public class Profile_Login_Fragment extends Fragment {
         // Callback registration
         fb_loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
-            public void onSuccess(LoginResult loginResult) {
+            public void onSuccess(final LoginResult loginResult) {
                 // App code
-                Log.v("TAG", "fb_loginButton =" + loginResult.getAccessToken());
-                interfaces.SocialToken(1, loginResult.getAccessToken().toString());
+
+                final AccessToken accessToken = loginResult.getAccessToken();
+
+                GraphRequestAsyncTask request = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject user, GraphResponse graphResponse) {
+                        Log.d(TAG, user.optString("email"));
+                        Log.d(TAG, user.optString("name"));
+                        Log.d(TAG, user.optString("id"));
+                        Log.v("TAG", "fb_loginButton =" + loginResult.getAccessToken());
+                        interfaces.SocialToken(GlobalConstants.FB,
+                                loginResult.getAccessToken().getToken().toString(),
+                                user.optString("id"));
+                    }
+                }).executeAsync();
+
+
             }
 
             @Override
@@ -136,8 +154,7 @@ public class Profile_Login_Fragment extends Fragment {
             public void success(Result<TwitterSession> result) {
                 // Do something with result, which provides a TwitterSession for making API calls
                 Log.v("TAG", "tw_loginButton =" + result.data.getAuthToken());
-                interfaces.SocialToken(2, result.data.getAuthToken().toString());
-                //login(result);
+                interfaces.SocialToken(GlobalConstants.TW, result.data.getAuthToken().toString(), String.valueOf(result.data.getUserId()));
             }
 
             @Override
@@ -167,6 +184,7 @@ public class Profile_Login_Fragment extends Fragment {
             @Override
             public void onResult(VKAccessToken res) {
                 // User passed Authorization
+                interfaces.SocialToken(GlobalConstants.VK, res.accessToken.toString(), res.userId.toString());
                 Log.v("TAG", "vk_loginButton" + res.accessToken.toString());
             }
             @Override

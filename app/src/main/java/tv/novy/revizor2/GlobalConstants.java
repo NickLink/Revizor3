@@ -10,9 +10,15 @@ public class GlobalConstants {
     public enum FeedType {comment, photo, diary, custom_revizion, custom_comment};
 
     public final static String TAG = "REVIZOR2";
-    public final static String API_PATH = "http://revizor.media-pt.com/api/v1/";
+    public final static String API_PATH = "http://old2015.revizor.novy.tv/api/v1/";
     // Tag used to cancel the request
     public final static String tag_json_obj = "json_obj_req";
+
+    public final static int VK = 2;
+    public final static int FB = 3;
+    public final static int TW = 4;
+    public final static String saved_key = "SAVED_KEY";
+
 
     public final static String region_id = "region_id";
     public final static String region_name = "region_name";
